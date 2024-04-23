@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import data from './data';
+import {BrowserRouter} from "react-router-dom"
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <BrowserRouter>
+    <div >
+      <header>
+         <a href="/">Amazona</a>
       </header>
+      <main>
+        <h1>Featured Products</h1>
+        <div className="products">
+          {data.products.map((product) => (
+            <div className="product" key={product.slug}>
+              <a href={`/product/${product.slug}`}>
+                <img src={product.image} alt={product.name} />
+              </a>
+              <div className="product-info">
+                <a href={`/product/${product.slug}`}>
+                  <p>{product.name}</p>
+                </a>
+                <p>
+                  <strong>${product.price}</strong>
+                </p>
+                <button>Add to cart</button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </main>
     </div>
+    </BrowserRouter>
   );
 }
+	export default App;
 
-export default App;
+
+  // Add page routing
+  // 1. npm i react-router-dom
+  // 2. create route for home screen
+  // 3. create router for product screen
